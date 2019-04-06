@@ -1,0 +1,23 @@
+{
+  "name": "sql_library_manager",
+  "version": "1.0.0",
+  "description": "library manage app with database",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Ran Wang",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "pug": "^2.0.3",
+    "sequelize": "^5.2.12",
+    "sequelize-cli": "^5.4.0",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
