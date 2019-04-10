@@ -2,11 +2,7 @@ extends layout.pug
 block content 
     h1 New Book
     form(action="/books/new/register", method="post")
-      if alert
-        p(class="alert-info")=alert
-
-      if book
-        p(class="alert-info")=error.message
+      include error.pug
 
       p
         label(for='title') Title

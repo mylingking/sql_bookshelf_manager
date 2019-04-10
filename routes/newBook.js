@@ -40,7 +40,7 @@ router.post("/register", (req, res, next) => {
           if (err.name === "SequelizeValidationError") {
             res.render("newBook", {
               book: Book.build(req.body),
-              error: err
+              err: err.errors
             });
           } else {
             // otherwise if server error, throw the error
