@@ -28,11 +28,25 @@ router.post("/register", (req, res, next) => {
         genre: req.body.genre,
         year: req.body.year
       };
-      Book.create(newBook).then(book => {
-        res.render("NewBook", {
-          alert: "Book successfully added to the library"
+      Book.create(newBook)
+        .then(() => {
+          res.render("NewBook", {
+            //inform the user that the book is added to the database
+            alert: "Book successfully added to the library"
+          });
+        })
+        .catch(err => {
+          // if userform fails server-side validation, inform the user
+          if (err.name === "SequelizeValidationError") {
+            res.render("newBook", {
+              book: Book.build(req.body),
+              error: err
+            });
+          } else {
+            // otherwise if server error, throw the error
+            throw err;
+          }
         });
-      });
     }
   });
 });
