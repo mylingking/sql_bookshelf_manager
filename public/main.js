@@ -57,3 +57,8 @@ const deactivate = () => {
     a[i].classList.remove("active");
   }
 };
+
+// give the first page button the class name 'active' to show it in active state when pages loads
+pagination[0].firstElementChild.classList.add("active");
+// call the show page function to show first 10 students when pages loads
+showPage(0, 10);
