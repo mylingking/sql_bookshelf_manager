@@ -111,3 +111,38 @@ ul.errors li {
 .search-button {
   margin-left: 6px !important;
 }
+
+a.button {
+  display: inline-block;
+}
+
+/* style for the pagination bar */
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  margin: 16px 0;
+}
+
+.page-button {
+  background: #019875;
+  color: white;
+  margin-right: 4px;
+  display: inline-block;
+  width: 25px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.page-button:hover {
+  background-color: #01b189;
+  cursor: pointer;
+}
+
+.page-button:active {
+  background-color: #084132;
+}
+
+.active {
+  background-color: #084132 !important;
+}
