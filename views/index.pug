@@ -1,5 +1,8 @@
 extends layout.pug
-block content 
+block content
+    form(action="/books/search" method="post")
+      input(type="text" name="keyword" placeholder="enter a key word")
+      input(type="submit" value="Search" class="search-button")
     h1 Books
     p
       a.button(href='/books/new') Create New Book

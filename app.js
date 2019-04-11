@@ -1,6 +1,8 @@
 const express = require("express");
 const sequelize = require("./models").sequelize;
 const bodyParser = require("body-parser");
+const Book = require("./models").Book;
+const _BOOKS = require("./seeders/dataApr-8-2019.json");
 
 const app = express();
 
@@ -18,6 +20,7 @@ app.use(bodyParser.json());
 app.use("/", require("./routes/index"));
 app.use("/books/new", require("./routes/newBook"));
 app.use("/books/:id", require("./routes/update"));
+app.use("/books/search", require("./routes/search"));
 
 // 404 error handler
 app.use((req, res) => {
@@ -33,20 +36,20 @@ const port = process.env.PORT || 5000;
 sequelize
   .sync({
     // remove all data and repopulate database when it retarts
-    // force: true,
+    force: true,
     // uncomment below line to see detailed queries
     logging: false
   })
-  // .then(() => {
-  //   // populate database with a set of 100 books
-  //   Book.bulkCreate(_BOOKS)
-  //     .then(books => {
-  //       console.log("\n100 initial books added\n");
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // })
+  .then(() => {
+    // populate database with a set of 100 books
+    Book.bulkCreate(_BOOKS)
+      .then(books => {
+        console.log("\n100 initial books added\n");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  })
   // spin off
   .then(() => {
     app.listen(port, () => console.log(`Server running at ${port}`));

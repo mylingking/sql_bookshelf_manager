@@ -44,7 +44,7 @@ router.post("/register", (req, res, next) => {
             });
           } else {
             // otherwise if server error, throw the error
-            throw err;
+            res.render("error");
           }
         });
     }

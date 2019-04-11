@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
       }
     })
     .catch(err => {
-      res.send(500);
+      res.render("error");
     });
 });
 
@@ -30,7 +30,7 @@ router.post("/update", (req, res) => {
       return book.update(req.body);
     })
     .catch(err => {
-      res.send(500);
+      res.render("error");
     })
     .then(book => res.render("updateBook", { book, alert: "Update success" }));
 });
@@ -38,14 +38,14 @@ router.post("/update", (req, res) => {
 /**
  * @POST delete the book
  */
-router.post("/remove", (req, res) => {
+router.post("/delete", (req, res) => {
   Book.findOne({ where: { id: req.params.id } })
     .then(book => {
       //return a promise
       return book.destroy();
     })
     .catch(err => {
-      res.send(500);
+      res.render("error");
     })
     //once removed, redirect to book list
     .then(book => res.redirect("/"));

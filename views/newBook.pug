@@ -2,7 +2,7 @@ extends layout.pug
 block content 
     h1 New Book
     form(action="/books/new/register", method="post")
-      include error.pug
+      include FormError.pug
 
       p
         label(for='title') Title

@@ -12,7 +12,14 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      author: DataTypes.STRING,
+      author: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Author should not be empty"
+          }
+        }
+      },
       genre: DataTypes.STRING,
       year: DataTypes.INTEGER
     },
