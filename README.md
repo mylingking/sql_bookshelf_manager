@@ -3,7 +3,9 @@
 The app is created to help librarians to Create, Read, Update, and Delete books in the library with handy search functions.
 Technologies: Node.js, SQLite, Sequelize (ORM), Express, and Pug.
 
-### `npm start`
+## `Installation`
+
+Run `npm install` to install all necessary dependencies.
 
 Each time the server restarts, the database will erase all data and be re-seeded by the file [./seeders/dataApr-8-2019.json]. To stop the data-resetting, you can comment-out the relevant code lines.
 
