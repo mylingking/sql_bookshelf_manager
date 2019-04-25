@@ -21,7 +21,7 @@ router.post("/register", (req, res, next) => {
       // if already such book, give user an alert
       res.render("NewBook", { alert: "This book already exists in the shelf" });
     } else {
-      // if non exist, const and append the newbook to the server, refresh the page and tell user book is added
+      // if not, const and append the newbook to the server, refresh the page and tell user book is added
       const newBook = {
         title: req.body.title,
         author: req.body.author,

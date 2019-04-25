@@ -8,7 +8,6 @@ const Op = Sequelize.Op; //import search query tool
  * @POST handle the search
  */
 router.post("/", (req, res) => {
-  console.log(req.body.keyword);
   Book.findAll({
     where: {
       //add multiple search criterias

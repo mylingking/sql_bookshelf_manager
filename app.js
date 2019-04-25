@@ -35,7 +35,7 @@ const port = process.env.PORT || 5000;
 // sync with model each time server spins off
 sequelize
   .sync({
-    // remove all data and repopulate database when it retarts
+    // remove all data and repopulate database when it restarts
     force: true,
     // uncomment below line to see detailed queries
     logging: false
