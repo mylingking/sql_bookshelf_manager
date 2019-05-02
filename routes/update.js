@@ -42,7 +42,13 @@ router.post("/update", (req, res) => {
       // if userform fails server-side validation, inform the user
       if (err.name === "SequelizeValidationError") {
         res.render("updateBook", {
-          book: Book.build(req.body),
+          book: Book.build({
+            id: req.params.id,
+            title: req.body.title,
+            author: req.body.author,
+            genre: req.body.genre,
+            year: req.body.year
+          }),
           err: err.errors
         });
       }
