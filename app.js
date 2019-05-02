@@ -3,11 +3,15 @@ const sequelize = require("./models").sequelize;
 const bodyParser = require("body-parser");
 const Book = require("./models").Book;
 const _BOOKS = require("./seeders/dataApr-8-2019.json");
+const morgan = require('morgan');
 
 const app = express();
 
 // use view engine as pug
 app.set("view engine", "pug");
+
+// setup morgan which gives us http request logging
+app.use(morgan("dev"));
 
 // create static
 app.use(express.static(__dirname + "/public"));
@@ -38,7 +42,7 @@ sequelize
     // remove all data and repopulate database when it restarts
     force: true,
     // uncomment below line to see detailed queries
-    // logging: true
+    logging: true
   })
   .then(() => {
     // populate database with a set of 100 books

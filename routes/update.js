@@ -43,10 +43,11 @@ router.post("/update", (req, res) => {
           book: Book.build(req.body),
           err: err.errors
         });
-      } else {
-        // otherwise if server error, throw the error
-        res.render("error");
       }
+      // else {
+      //   // otherwise if server error, throw the error
+      //   res.render("error");
+      // }
     });
 
 });
