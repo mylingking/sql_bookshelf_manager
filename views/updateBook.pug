@@ -3,7 +3,7 @@ block content
     h1 Update Book
     include FormError.pug
     
-    form(action=`/books/${book.id}`, method='post')
+    form(action=`/books/${book.id}/update`, method='post')
         p
             label(for='title') Title
             input#title(name='title', type='text', value=`${book.title}`)

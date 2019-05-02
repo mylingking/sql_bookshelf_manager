@@ -12,7 +12,9 @@ for (let i = 0; i < totalPage; i++) {
   const li = document.createElement("li");
   li.className += "page-button";
   li.textContent = i + 1;
-  pagination[0].appendChild(li);
+  if (pagination[0]) {
+    pagination[0].appendChild(li);
+  }
 }
 
 // show the books on pages according to which page we are
@@ -23,31 +25,35 @@ const showPage = (start, end) => {
   }
   // show only one page of student
   for (let j = start; j < end; j++) {
-    books[j].style.display = "";
+    if (books[j]) {
+      books[j].style.display = "";
+    }
   }
 };
 
 // click shows corresponding page, active the button clicked
-pagination[0].addEventListener("click", event => {
-  if (event.target.tagName == "LI") {
-    const currentPage = event.target.textContent;
-    // deactivate other button
-    deactivate();
-    event.target.className += " active";
-    //determine the books to show based on the clicked page number
-    //if its the last page, show books until it hits the last student
-    if (parseInt(currentPage) === totalPage) {
-      start = currentPage * 10 - 10;
-      end = books.length;
-      showPage(start, end);
-      //otherwise, show the corresponding books
-    } else {
-      start = currentPage * 10 - 10;
-      end = currentPage * 10;
-      showPage(start, end);
+if (pagination[0]) {
+  pagination[0].addEventListener("click", event => {
+    if (event.target.tagName == "LI") {
+      const currentPage = event.target.textContent;
+      // deactivate other button
+      deactivate();
+      event.target.className += " active";
+      //determine the books to show based on the clicked page number
+      //if its the last page, show books until it hits the last student
+      if (parseInt(currentPage) === totalPage) {
+        start = currentPage * 10 - 10;
+        end = books.length;
+        showPage(start, end);
+        //otherwise, show the corresponding books
+      } else {
+        start = currentPage * 10 - 10;
+        end = currentPage * 10;
+        showPage(start, end);
+      }
     }
-  }
-});
+  });
+}
 
 // deactivate other buttons when one button is clicked
 // this function is called in the event listener
@@ -59,6 +65,9 @@ const deactivate = () => {
 };
 
 // give the first page button the class name 'active' to show it in active state when pages loads
-pagination[0].firstElementChild.classList.add("active");
+if (pagination[0]) {
+  pagination[0].firstElementChild.classList.add("active");
+}
+
 // call the show page function to show first 10 students when pages loads
 showPage(0, 10);

@@ -24,16 +24,18 @@ router.get("/", (req, res) => {
 /**
  * @POST update the book
  */
-router.post("/", (req, res) => {
+router.post("/update", (req, res) => {
   Book.findOne({ where: { id: req.params.id } })
     .then(book => {
-      const updatedBook = {
-        title: req.body.title,
-        author: req.body.author,
-        genre: req.body.genre,
-        year: req.body.year
-      };
-      return book.update(updatedBook);
+      if (book) {
+        const updatedBook = {
+          title: req.body.title,
+          author: req.body.author,
+          genre: req.body.genre,
+          year: req.body.year
+        };
+        return book.update(updatedBook);
+      }
     })
     .then(book => res.render("updateBook", { book, alert: "Update success" }))
     .catch(err => {
