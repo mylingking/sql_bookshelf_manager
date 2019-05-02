@@ -29,10 +29,20 @@ router.post("/update", (req, res) => {
     .then(book => {
       return book.update(req.body);
     })
+    .then(book => res.render("updateBook", { book, alert: "Update success" }))
     .catch(err => {
-      res.render("error");
-    })
-    .then(book => res.render("updateBook", { book, alert: "Update success" }));
+      // if userform fails server-side validation, inform the user
+      if (err.name === "SequelizeValidationError") {
+        res.render("updateBook", {
+          book: Book.build(req.body),
+          err: err.errors
+        });
+      } else {
+        // otherwise if server error, throw the error
+        res.render("error");
+      }
+    });
+
 });
 
 /**
